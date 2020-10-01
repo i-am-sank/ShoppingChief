@@ -1,0 +1,7 @@
+{% extends 'base_layout.html' %} {% block content %}
+<h1>Signup</h1>
+<form action="/accounts/signup/" class="site-form" method="POST">
+    {% csrf_token %} {{form}}
+    <input type="submit" value="SignUp">
+</form>
+{% endblock %}

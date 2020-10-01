@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>comfy house</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <!--navbar-->
+    <nav class="navbar">
+        <div class="nav-center">
+            <span class="bar-icon">
+            <div><a href="#" class="signup-btn">Login</a></div>
+            <div><a href="#" class="signup-btn">Sign in</a></div>
+            </span>
+            <img src="/static/images/logo.svg" alt="comfy house logo" class="logo">
+            <div class="cart-icon">
+                <i class="fa fa-cart-plus"></i>
+
+                <div class="num">0</div>
+            </div>
+        </div>
+    </nav>
+    <!--navbar-->
+
+    <!--backgrnd header-->
+    <header class="head">
+        <div class="banner">
+            <h1 class="heading">furniture collection</h1>
+            <button onclick="scrolldown()" class="shop-btn">shop now</button>
+        </div>
+    </header>
+    <!--backgrnd header end-->
+    <section class="main-products">
+        <div class="pdt">
+            <h3>our products</h3>
+        </div>
+        <div class="product-center">
+        </div>
+    </section>
+    <!--products -->
+    <!--cart-->
+    <div class="cart-overlay">
+        <div class="cart">
+            <span class="close-btn">
+            <i class="fa fa-window-close"></i>
+          </span>
+            <h2>your cart</h2>
+            <!--cart content-->
+            <div class="cart-content"></div>
+            <!--end of cart content-->
+            <h3 class="item-total">your total is : $<span class="total">32</span></h3>
+            <button id="buy-btn">buy</button>
+            <button class="clear-btn">clear cart</button>
+        </div>
+    </div>
+    <!--end of cart-->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>

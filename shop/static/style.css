@@ -37,7 +37,14 @@
     text-decoration: none;
 }
 
-.bar-icon {
+.acc-btns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.acc-btn {
+    text-decoration: none;
     padding-left: 2px;
     padding-right: 2px;
     padding-bottom: 1px;
@@ -51,7 +58,7 @@
     font-size: 23px;
 }
 
-.bar-icon:hover {
+.acc-btn:hover {
     background-color: rgb(254, 254, 255);
 }
 

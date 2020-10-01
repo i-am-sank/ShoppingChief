@@ -17,10 +17,10 @@
     <!--navbar-->
     <nav class="navbar">
         <div class="nav-center">
-            <span class="bar-icon">
-            <div><a href="#" class="signup-btn">Login</a></div>
-            <div><a href="#" class="signup-btn">Sign in</a></div>
-            </span>
+            <div class="acc-btns">
+                <div><a href="{% url 'accounts:login' %}" class="acc-btn">Login</a></div>
+                <div><a href="{% url 'accounts:signup' %}" class="acc-btn">Sign in</a></div>
+            </div>
             <img src="/static/images/logo.svg" alt="comfy house logo" class="logo">
             <div class="cart-icon">
                 <i class="fa fa-cart-plus"></i>

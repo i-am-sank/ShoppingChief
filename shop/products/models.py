@@ -11,14 +11,14 @@ from django.contrib.auth.models import User
 #         return "%s %s" % (self.first_name, self.last_name)
 
 
-class ItemsToBuy(models.Model):
-    customer = models.ForeignKey(User,on_delete=models.CASCADE)
-    title = models.CharField(max_length=20)
-    amount = models.IntegerField(default=1)
+class Products(models.Model):
+    title = models.CharField(max_length=30)
+    amount = models.IntegerField(default=1,null=True)
     price = models.FloatField(default=0)
-    image = models.ImageField()
-    
+    image = models.ImageField(default='/static/images/furniture.jpeg/',blank=True)
+    customer = models.ForeignKey(User,default=None,on_delete=models.CASCADE,null=True)
+
     def __str__(self):
-        return item_title
+        return self.title
 
 

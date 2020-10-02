@@ -4,7 +4,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def buy_products(request):
-    #items = json.loads(request.data)
     products = []
     if request.method == "POST":
         items = request.POST
@@ -15,6 +14,5 @@ def buy_products(request):
             print(products)
             i+=1
             res = 'cart['+str(i)+'][title]'   
-        print('yay')
     return render(request,'products/buy_products.html',{'products':products})  
 

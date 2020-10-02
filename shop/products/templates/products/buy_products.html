@@ -1,7 +1,9 @@
 {% extends 'base_layout.html' %} {% block content %}
 <h1>Items to buy</h1>
-{% for item in products %}
+{% if products %} {% for item in products %}
 <div class="items">
     <h2>{{item}}</h2>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %} {% else %}
+<p>Cart is Empty</p>
+{% endif %} {% endblock %}

@@ -234,7 +234,7 @@ function UpdatedbCart() {
         dataType: "html",
         success: function() {
             console.log('yay');
-            // window.location.href = '/products/buy/';
+            window.location.href = '/products/buy/';
         },
         failure: function() {
             alert('No success');

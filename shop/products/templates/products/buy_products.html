@@ -1,8 +1,8 @@
 {% extends 'base_layout.html' %} {% block content %}
 <h1>Items to buy</h1>
-{% if products %} {% for item in products %}
+{% if user.products_set.all %} {% for item in user.products_set.all %}
 <div class="items">
-    <h2>{{item}}</h2>
+    <h2>{{item.title}} {{item.amount}}</h2>
 </div>
 {% endfor %} {% else %}
 <p>Cart is Empty</p>

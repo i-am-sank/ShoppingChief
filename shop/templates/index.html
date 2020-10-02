@@ -18,13 +18,25 @@
     <nav class="navbar">
         <div class="nav-center">
             <div class="acc-btns">
+                {% if user.is_authenticated %}
+                <div>
+                    <i class="fa fa-user-circle"></i>
+                    <p>{{user.username}}</p>
+                </div>
+                <div>
+                    <form class="logout-link" action="{% url 'accounts:logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="acc-btn">Logout</button>
+                    </form>
+                </div>
+                {% else %}
                 <div><a href="{% url 'accounts:login' %}" class="acc-btn">Login</a></div>
                 <div><a href="{% url 'accounts:signup' %}" class="acc-btn">Sign in</a></div>
+                {% endif %}
             </div>
             <img src="/static/images/logo.svg" alt="comfy house logo" class="logo">
             <div class="cart-icon">
                 <i class="fa fa-cart-plus"></i>
-
                 <div class="num">0</div>
             </div>
         </div>

@@ -10,7 +10,6 @@
     <title>comfy house</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
 <body>
@@ -18,12 +17,7 @@
     <nav class="navbar">
         <div class="nav-center">
             <div class="acc-btns">
-                {% if user.is_authenticated %}
-                <div>
-                    <i class="fa fa-user-circle"></i>
-                    <p>{{user.username}}</p>
-                </div>
-                {% endif %}
+                {% block userfac %} {% endblock %}
             </div>
             <img src="/static/images/logo.svg" alt="comfy house logo" class="logo">
             <div class="cart-icon">
@@ -38,7 +32,7 @@
     <!--backgrnd header-->
     <header class="head">
         <div class="banner">
-            {% block content %}{% csrf_token %} {% endblock %}
+            {% block content %} {% endblock %}
         </div>
     </header>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>

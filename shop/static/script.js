@@ -45,10 +45,9 @@ class UI {
         let result = '';
         products.forEach(product => {
             result += `
-       <div class="product-detail">
+            <div class="product-detail">
                     <img src=${product.image} alt="furniture" class="image1" >
-                    <button class="addbtn" data-id=${product.id}><i class="fa fa-shopping-cart"></i>add to bag
-                    </button>
+                    <button class="addbtn" data-id=${product.id}><i class="fa fa-shopping-cart"></i>add to bag</button>
                     <h4 class="detail-1">${product.title}</h4>
                     <h5 class="price">$${product.price}</h5>
             </div> 
@@ -221,7 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
 function UpdatedbCart() {
     var len = cart.length;
     $.ajax({
@@ -233,12 +231,12 @@ function UpdatedbCart() {
         },
         dataType: "html",
         success: function() {
-            console.log('yay');
+            // console.log('yay');
             window.location.href = '/products/buy/';
         },
         failure: function() {
             alert('No success');
-            console.log('Noo');
+            // console.log('Noo');
         }
     });
 }

@@ -77,6 +77,39 @@
     <!--end of cart-->
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="{% static 'script.js' %}"></script>
+    {% if user.is_authenticated %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var data = JSON.parse("{{data|escapejs}}");
+            var notItem = [];
+            for (var x in data) {
+
+                for (var i in cart) {
+                    if (data[x][1][0] == cart[i].id) {
+                        cart[i].amount = data[x][1][1];
+                        notItem.push(cart[i].id);
+                    }
+                }
+            }
+            const ui1 = new UI();
+            for (var x in data) {
+                if (notItem.indexOf(data[x][1][0].toString()) == -1) {
+                    let cartItem = {...Storage.getProduct(data[x][1][0].toString()),
+                        amount: data[x][1][1]
+                    };
+                    cart = [...cart, cartItem];
+                    // dispaly cart item,
+                    ui1.addCartItem(cartItem);
+                }
+            }
+            Storage.saveCart(cart);
+            ui1.setCartValues(cart);
+            //show cart
+            ui1.showCart();
+            //console.log(cart);
+        });
+    </script>
+    {% endif %}
 </body>
 
 </html>

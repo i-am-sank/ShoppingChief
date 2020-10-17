@@ -11,12 +11,13 @@ def buy_products(request):
     if request.method == "POST":
         items = request.POST
         i=0
+        user = request.user
         pid = 'cart['+str(i)+'][id]'
         pamount = 'cart['+str(i)+'][amount]'
         while(i<int(items['size'])):
             p = Products.objects.get(pk=items[pid])
             p.amount = int(items[pamount])
-            p.customer = request.user
+            p.customer = user
             p.save()
             print(p.title,p.amount)
             i+=1

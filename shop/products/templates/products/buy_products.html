@@ -1,4 +1,15 @@
-{% extends 'base_layout.html' %} {% block content %}
+{% extends 'base_layout.html' %} {% block userfac %} {% if user.is_authenticated %}
+<div>
+    <i class="fa fa-user-circle"></i>
+    <p>{{user.username}}</p>
+</div>
+<div>
+    <form class="logout-link" action="{% url 'accounts:logout' %}" method="POST">
+        {% csrf_token %}
+        <button class="acc-btn">Logout</button>
+    </form>
+</div>
+{% endif %} {% endblock %} {% block content %}
 <h1>Items to buy</h1>
 {% if user.products_set.all %} {% for item in user.products_set.all %}
 <div class="items">
@@ -6,4 +17,9 @@
 </div>
 {% endfor %} {% else %}
 <p>Cart is Empty</p>
-{% endif %} {% endblock %}
+{% endif %}
+<form action="{% url 'home' %}" method="POST">
+    {% csrf_token %}
+    <button class="submit">Buy More</button>
+</form>
+{% endblock %}

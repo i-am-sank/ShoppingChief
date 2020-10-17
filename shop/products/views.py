@@ -12,6 +12,7 @@ def buy_products(request):
         items = request.POST
         i=0
         user = request.user
+        user.products_set.clear()
         pid = 'cart['+str(i)+'][id]'
         pamount = 'cart['+str(i)+'][amount]'
         while(i<int(items['size'])):
@@ -19,7 +20,6 @@ def buy_products(request):
             p.amount = int(items[pamount])
             p.customer = user
             p.save()
-            print(p.title,p.amount)
             i+=1
             pid = 'cart['+str(i)+'][id]'
             pamount = 'cart['+str(i)+'][amount]'  

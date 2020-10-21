@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>comfy house</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}"> {% block css %}
+    <link rel="stylesheet" href="{% static 'style_cart.css' %}"> {% endblock %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -75,9 +76,11 @@
         </div>
     </div>
     <!--end of cart-->
+
+    <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="{% static 'script.js' %}"></script>
-    {% if user.is_authenticated %}
+    {% block script %}
+    <script src="{% static 'script.js' %}"></script> {% endblock %} {% if user.is_authenticated %}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             var data = JSON.parse("{{data|escapejs}}");
@@ -110,6 +113,8 @@
         });
     </script>
     {% endif %}
+
+
 </body>
 
 </html>

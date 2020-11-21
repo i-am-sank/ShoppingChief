@@ -30,8 +30,8 @@ class Products {
                 const { title, price } = items.fields;
                 const { id } = items.sys;
                 const image = items.fields.image.fields.file.url;
-                return { title, price, id, image }
-            })
+                return { title, price, id, image };
+            });
             return products;
         } catch (error) {
             console.log(error);
@@ -51,7 +51,7 @@ class UI {
                     <h4 class="detail-1">${product.title}</h4>
                     <h5 class="price">$${product.price}</h5>
             </div> 
-            `
+            `;
         });
         productsdom.innerHTML = result;
     }
@@ -83,9 +83,9 @@ class UI {
                 this.addCartItem(cartItem);
                 //show cart
                 this.showCart();
-            })
+            });
 
-        })
+        });
     }
     setCartValues(cart) {
         let temptotal = 0;
@@ -93,7 +93,7 @@ class UI {
         cart.map(item => {
             temptotal += item.price * item.amount;
             itemsTotal += item.amount;
-        })
+        });
         cartTotal.innerText = parseFloat(temptotal.toFixed(2));
         cartItems.innerText = itemsTotal;
     }
@@ -166,7 +166,7 @@ class UI {
                     this.removeItem(id);
                 }
             }
-        })
+        });
     }
     clearCart() {
         let cartItems = cart.map(item => item.id);

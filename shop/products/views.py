@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Products
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from json import dumps
 # Create your views here.
 
 @csrf_exempt
@@ -22,6 +23,14 @@ def buy_products(request):
             p.save()
             i+=1
             pid = 'cart['+str(i)+'][id]'
-            pamount = 'cart['+str(i)+'][amount]'  
+            pamount = 'cart['+str(i)+'][amount]'
+    else:
+        user = request.user
+        items =  user.products_set.all()
+        data = []
+        for item in items:
+            s = 'item.id'+str(item.id)
+            data.append([s,[item.id,item.price,item.amount]])    
+        data = dumps(data)
+        return render(request,'products/buy_products.html',{'data':data})
     return render(request,'products/buy_products.html')  
-

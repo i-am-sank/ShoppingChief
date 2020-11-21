@@ -4,7 +4,7 @@
     box-sizing: border-box;
     position: relative;
     scroll-behavior: smooth;
-    font-size: medium;
+    /*font-size: medium;*/
 }
 
 
@@ -95,8 +95,6 @@
 }
 
 .banner {
-    justify-content: center;
-    align-items: center;
     display: inline-block;
     text-align: center;
     background-color: rgba(252, 252, 252, 0.8);
@@ -123,6 +121,7 @@
     font-size: 11px;
     cursor: pointer;
     outline: none;
+    margin-bottom: 5px;
 }
 
 .shop-btn:hover {

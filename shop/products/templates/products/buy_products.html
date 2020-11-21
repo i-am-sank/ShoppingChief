@@ -1,4 +1,50 @@
-{% extends 'base_layout.html' %} {% block userfac %} {% if user.is_authenticated %}
+{% extends 'base_layout.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'style_cart.css' %}">
+<style>
+    #edit-btn {
+        background-color: rgb(255, 189, 127);
+        border: none;
+        color: white;
+        width: 80px;
+        height: 28px;
+        text-transform: uppercase;
+        font-size: 11px;
+        cursor: pointer;
+        outline: none;
+        margin-bottom: 5px;
+    }
+    
+    #edit-btn:hover {
+        background-color: rgba(255, 189, 127, 0.4);
+        font-weight: 700;
+        color: rgb(223, 124, 31);
+    }
+    
+    .banner {
+        width: 35%;
+    }
+    
+    .items-img {
+        width: 50%;
+        height: 80px;
+    }
+    
+    .cart-item {
+        width: 50vw;
+        font-size: 12px;
+    }
+    
+    .cart {
+        width: auto;
+        position: relative;
+    }
+    
+    .counter {
+        margin-top: 5%;
+    }
+</style>
+
+{% endblock %} {% block userfac %} {% if user.is_authenticated %}
 <div>
     <i class="fa fa-user-circle"></i>
     <p>{{user.username}}</p>
@@ -10,16 +56,42 @@
     </form>
 </div>
 {% endif %} {% endblock %} {% block content %}
-<h1>Items to buy</h1>
-{% if user.products_set.all %} {% for item in user.products_set.all %}
-<div class="items">
-    <h2>{{item.title}} {{item.amount}}</h2>
+<h2>Purchase Summary</h2>
+<div class="cart">
+    <div class="cart-content">
+        {% if user.products_set.all %} {% for item in user.products_set.all %}
+        <div class="cart-cont">
+            <img src={{item.image}} alt="item" class="items-img">
+            <div class="cart-item">
+                <h3 class="item-name">{{item.title}}</h3>
+                <h4 class="item-price">${{item.price}}</h4>
+                <h5 class="item-amount">No. of Pieces {{item.amount}}</h5>
+            </div>
+            <div class="counter">
+                <h4 class="item-price">$<span id="{{item.id}}">0</span></h4>
+            </div>
+        </div>
+        {% endfor %} {% else %}
+        <p>Cart is Empty</p>
+        {% endif %}</div>
+    <h3 class="item-total">your total is : $<span class="total">0</span></h3>
+    <form action="{% url 'home' %}" method="POST">
+        {% csrf_token %}
+        <button class="submit" id="edit-btn">Edit Order</button>
+    </form>
 </div>
-{% endfor %} {% else %}
-<p>Cart is Empty</p>
-{% endif %}
-<form action="{% url 'home' %}" method="POST">
-    {% csrf_token %}
-    <button class="submit">Buy More</button>
-</form>
+{% endblock %} {% block script %}
+<script>
+    var data = JSON.parse("{{data|escapejs}}");
+    var total = 0,
+        itemtotal = 0;
+    for (var x in data) {
+        itemtotal = data[x][1][1] * data[x][1][2];
+        total = total + itemtotal;
+        const itemvalue = document.getElementById(data[x][1][0].toString());
+        itemvalue.innerText = parseFloat(itemtotal.toFixed(2));
+    }
+    const cartTotal = document.querySelector('.total');
+    cartTotal.innerText = parseFloat(total.toFixed(2));
+</script>
 {% endblock %}

@@ -1,11 +1,4 @@
-{% extends 'base_layout.html' %} {% block css %}
-<style>
-    .site-form {
-        font-size: small;
-        justify-content: center;
-    }
-</style>
-{% endblock %} {% block content %}
+{% extends 'base_layout.html' %} {% block css %} {% endblock %} {% block content %}
 <h1>Login</h1>
 <form action="{% url 'accounts:login' %}" class="site-form" method="POST">
     {% csrf_token %} {{form}} {% if request.GET.next %}
